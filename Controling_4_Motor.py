@@ -18,5 +18,15 @@ def forward(tf):
     time.sleep(tf)
     gpio.cleanup()
 
+def reverse(tf):
+    init()
+    gpio.output(7, True)
+    gpio.output(11, False)
+    gpio.output(13, False)
+    gpio.output(15, True)
+    time.sleep(tf)
+    gpio.cleanup()
+
 
 forward(1)
+reverse(1)
