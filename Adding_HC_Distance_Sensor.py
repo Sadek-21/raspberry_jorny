@@ -10,7 +10,8 @@ def init():
     gpio.setup(11, gpio.OUT)
     gpio.setup(13, gpio.OUT)
     gpio.setup(15, gpio.OUT)
-
+    gpio.setup(12, gpio.OUT)
+    gpio.setup(16, gpio.IN)
 
 def forward(tf):
     gpio.output(7, False)
@@ -67,6 +68,27 @@ def Pivot_right(tf):
  
 
 
+def distance(mesure='cm'):
+    init()
+    gpio.output(12, False)
+    while gpio.input(16) == 0:
+        nosig = time.time()
+
+    while gpio.input(16) == 1:
+        sig = time.time()   #sig = signale / nosig = no signale
+
+    tl = sig - nosig # tl= time long
+
+    if measure == 'cm':
+        distance = tl / 0.000058
+    elif mesaure == 'in':
+        distance = tl / 0.000148
+    else:
+        print('improper coice of measurement : in or cm')
+        distance = None
+    gpio.cleanup()
+    return distance
+
 def key_input(event):
     init()
     print ('key', event.char)
@@ -92,3 +114,8 @@ def key_input(event):
 command = tk.Tk()
 command.bind('keyPress', key_input)
 command.mainloop()
+
+
+
+
+print(distance('cm'))
