@@ -155,11 +155,37 @@ def check_front():
 
 
 
-def automomy():
+def autonomy():
     tf = 0.030
     x = random.randrange(0,4)
 
     if x == 0:
         for y in range(30):
+            check_front()
             init() 
             forward(tf)
+    elif x == 1:
+        for y in range(30):
+            check_left(tf)
+            init()
+            pivot_left(tf)
+    elif x == 2:
+        for y in range(30):
+             check_front()
+             init()
+             turn_right(tf)
+    elif x == 3:
+        for y in range(30):
+             check_front()
+             init()
+             turn_right(tf)
+
+
+
+
+
+for z in range(10):
+    autonomy()
+
+
+
