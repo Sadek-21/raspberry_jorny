@@ -2,7 +2,7 @@ import RPi.GPIO as gpio
 import time
 import sys
 import tkinter as tk
-
+import random
 
 def init():
     gpio.setmode(gpio.BOARD)
@@ -117,7 +117,7 @@ def key_input(event):
     if curDis < 20:
         init()
         reverse(2)
-  '''
+ 
 
 
     
@@ -125,12 +125,32 @@ def key_input(event):
 command = tk.Tk()
 command.bind('keyPress', key_input)
 command.mainloop()
-
+'''
 
 
 
 print(distance('cm'))
 
+
+def check_front():
+    init()
+    dist = distance()
+
+    if dist < 15:
+       print('Too close', dist)
+       init()
+       reverse(2)
+       dist = distance()
+       if dist < 15:
+          print('Too close', dist)
+          init()
+          pivot_left(3)
+          init()
+          reverse(2)
+          dist = distance()
+          if dist < 15:
+             print('Too close giving up', dist)
+             sys.exit()     
 
 
 
@@ -138,3 +158,8 @@ print(distance('cm'))
 def automomy():
     tf = 0.030
     x = random.randrange(0,4)
+
+    if x == 0:
+        for y in range(30):
+            init() 
+            forward(tf)
