@@ -4,7 +4,6 @@ import sys
 import tkinter as tk
 
 
-
 def init():
     gpio.setmode(gpio.BOARD)
     gpio.setup(7, gpio.OUT)
@@ -90,6 +89,7 @@ def distance(mesure='cm'):
     gpio.cleanup()
     return distance
 
+  '''
 def key_input(event):
     init()
     print ('key', event.char)
@@ -117,7 +117,7 @@ def key_input(event):
     if curDis < 20:
         init()
         reverse(2)
-
+  '''
 
 
     
@@ -130,3 +130,11 @@ command.mainloop()
 
 
 print(distance('cm'))
+
+
+
+
+
+def automomy():
+    tf = 0.030
+    x = random.randrange(0,4)
